@@ -10,7 +10,7 @@ async function query(query: any, variables: object) {
   return data
 }
 
-export async function useGetCharacterById(id: number): Promise<Character> {
+export async function useGetCharacterById(id: number): Promise<Character | undefined> {
   const { character } = await query(
     gql`
       query getCharacterById ($id: ID!){
@@ -30,6 +30,6 @@ export async function useGetCharacterById(id: number): Promise<Character> {
       id: String(id)
     }
   )
-
+  
   return character
 }

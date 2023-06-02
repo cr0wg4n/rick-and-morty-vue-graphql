@@ -35,9 +35,15 @@ watch(() => route.params.id, async () => {
 }, { immediate:true })
 
 watch(characterId, async () => {
-  character.value = await  useGetCharacterById(characterId.value)
+  const newCharacter = await  useGetCharacterById(characterId.value)
+  if(newCharacter) {
+    character.value = newCharacter
+  } else {
+    router.push({
+      name: 'error'
+    })
+  }
 }, { immediate: true })
-
 
 const changeRoute = (id: number) => {
   router.push({
@@ -62,7 +68,7 @@ const left = () => {
 <template>
   <ControlArrows @right="right" @left="left"/>
   <div class="p-4 h-screen _center flex-col">
-    <CharacterBox :character="character.value"/>
+    <CharacterBox :character="character.value" />
   </div>
 </template>
 

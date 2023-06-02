@@ -50,3 +50,20 @@ pnpm test:unit
 ```sh
 pnpm lint
 ```
+
+
+### Vue Notes
+
+Define Props TS
+```ts
+const slots = defineSlots<{
+  default(props: { someSlotProps: any }): void
+}>()
+```
+
+Define Emits TS
+```ts
+const emit = defineEmits<{
+  (e: 'click'): void
+}>()
+```
